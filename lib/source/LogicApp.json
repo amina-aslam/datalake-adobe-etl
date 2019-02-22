@@ -1,0 +1,695 @@
+{
+    "$connections": {
+        "value": {
+            "sql": {
+                "connectionId": "/subscriptions/b76dd2a5-50d4-44b1-b0c0-a63079ac4ca4/resourceGroups/OPR-DataLake/providers/Microsoft.Web/connections/sql",
+                "connectionName": "sql",
+                "id": "/subscriptions/b76dd2a5-50d4-44b1-b0c0-a63079ac4ca4/providers/Microsoft.Web/locations/eastus/managedApis/sql"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Delay": {
+                "inputs": {
+                    "interval": {
+                        "count": 1,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Insert_row": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_2": {
+                "inputs": {
+                    "interval": {
+                        "count": 1,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Insert_row_2": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_3": {
+                "inputs": {
+                    "interval": {
+                        "count": 1,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Insert_row_3": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_4": {
+                "inputs": {
+                    "interval": {
+                        "count": 1,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Insert_row_4": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "Delay_5": {
+                "inputs": {
+                    "interval": {
+                        "count": 1,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Insert_row_5": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "HTTP": {
+                "inputs": {
+                    "body": {
+                        "dimension": "variables/daterangeday",
+                        "globalFilters": [
+                            {
+                                "dateRange": "@parameters('date')",
+                                "type": "dateRange"
+                            }
+                        ],
+                        "metricContainer": {
+                            "metricFilters": [
+                                {
+                                    "dateRange": "@parameters('date')",
+                                    "id": "0",
+                                    "type": "dateRange"
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "columnId": "0",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/pageviews"
+                                },
+                                {
+                                    "columnId": "1",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visits"
+                                },
+                                {
+                                    "columnId": "2",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/averagetimespentonsite"
+                                },
+                                {
+                                    "columnId": "3",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/bouncerate"
+                                },
+                                {
+                                    "columnId": "4",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visitors"
+                                }
+                            ]
+                        },
+                        "rsid": "bbgprod",
+                        "settings": {
+                            "dimensionSort": "asc"
+                        }
+                    },
+                    "headers": {
+                        "Authorization": "@parameters('token')",
+                        "content-type": "application/json",
+                        "x-api-key": "be4e29e55a524c6aa87da0c56d60638c",
+                        "x-proxy-global-company-id": "bbg1"
+                    },
+                    "method": "POST",
+                    "uri": "https://analytics.adobe.io/api/bbg1/reports"
+                },
+                "runAfter": {},
+                "type": "Http"
+            },
+            "HTTP_2": {
+                "inputs": {
+                    "body": {
+                        "dimension": "variables/daterangeday",
+                        "globalFilters": [
+                            {
+                                "dateRange": "@parameters('date')",
+                                "type": "dateRange"
+                            }
+                        ],
+                        "metricContainer": {
+                            "metricFilters": [
+                                {
+                                    "dateRange": "@parameters('date')",
+                                    "id": "0",
+                                    "type": "dateRange"
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "columnId": "0",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/pageviews"
+                                },
+                                {
+                                    "columnId": "1",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visits"
+                                },
+                                {
+                                    "columnId": "2",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/averagetimespentonsite"
+                                },
+                                {
+                                    "columnId": "3",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/bouncerate"
+                                },
+                                {
+                                    "columnId": "4",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visitors"
+                                }
+                            ]
+                        },
+                        "rsid": "bbgentityvoa",
+                        "settings": {
+                            "dimensionSort": "asc"
+                        }
+                    },
+                    "headers": {
+                        "Authorization": "@parameters('token')",
+                        "content-type": "application/json",
+                        "x-api-key": "be4e29e55a524c6aa87da0c56d60638c",
+                        "x-proxy-global-company-id": "bbg1"
+                    },
+                    "method": "POST",
+                    "uri": "https://analytics.adobe.io/api/bbg1/reports"
+                },
+                "runAfter": {
+                    "Delay": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "HTTP_3": {
+                "inputs": {
+                    "body": {
+                        "dimension": "variables/daterangeday",
+                        "globalFilters": [
+                            {
+                                "dateRange": "@parameters('date')",
+                                "type": "dateRange"
+                            }
+                        ],
+                        "metricContainer": {
+                            "metricFilters": [
+                                {
+                                    "dateRange": "@parameters('date')",
+                                    "id": "0",
+                                    "type": "dateRange"
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "columnId": "0",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/pageviews"
+                                },
+                                {
+                                    "columnId": "1",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visits"
+                                },
+                                {
+                                    "columnId": "2",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/averagetimespentonsite"
+                                },
+                                {
+                                    "columnId": "3",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/bouncerate"
+                                },
+                                {
+                                    "columnId": "4",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visitors"
+                                }
+                            ]
+                        },
+                        "rsid": "bbgentityrferl",
+                        "settings": {
+                            "dimensionSort": "asc"
+                        }
+                    },
+                    "headers": {
+                        "Authorization": "@parameters('token')",
+                        "content-type": "application/json",
+                        "x-api-key": "be4e29e55a524c6aa87da0c56d60638c",
+                        "x-proxy-global-company-id": "bbg1"
+                    },
+                    "method": "POST",
+                    "uri": "https://analytics.adobe.io/api/bbg1/reports"
+                },
+                "runAfter": {
+                    "Delay_2": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "HTTP_4": {
+                "inputs": {
+                    "body": {
+                        "dimension": "variables/daterangeday",
+                        "globalFilters": [
+                            {
+                                "dateRange": "@parameters('date')",
+                                "type": "dateRange"
+                            }
+                        ],
+                        "metricContainer": {
+                            "metricFilters": [
+                                {
+                                    "dateRange": "@parameters('date')",
+                                    "id": "0",
+                                    "type": "dateRange"
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "columnId": "0",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/pageviews"
+                                },
+                                {
+                                    "columnId": "1",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visits"
+                                },
+                                {
+                                    "columnId": "2",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/averagetimespentonsite"
+                                },
+                                {
+                                    "columnId": "3",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/bouncerate"
+                                },
+                                {
+                                    "columnId": "4",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visitors"
+                                }
+                            ]
+                        },
+                        "rsid": "bbgentityrfa",
+                        "settings": {
+                            "dimensionSort": "asc"
+                        }
+                    },
+                    "headers": {
+                        "Authorization": "@parameters('token')",
+                        "content-type": "application/json",
+                        "x-api-key": "be4e29e55a524c6aa87da0c56d60638c",
+                        "x-proxy-global-company-id": "bbg1"
+                    },
+                    "method": "POST",
+                    "uri": "https://analytics.adobe.io/api/bbg1/reports"
+                },
+                "runAfter": {
+                    "Delay_3": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "HTTP_5": {
+                "inputs": {
+                    "body": {
+                        "dimension": "variables/daterangeday",
+                        "globalFilters": [
+                            {
+                                "dateRange": "@parameters('date')",
+                                "type": "dateRange"
+                            }
+                        ],
+                        "metricContainer": {
+                            "metricFilters": [
+                                {
+                                    "dateRange": "@parameters('date')",
+                                    "id": "0",
+                                    "type": "dateRange"
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "columnId": "0",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/pageviews"
+                                },
+                                {
+                                    "columnId": "1",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visits"
+                                },
+                                {
+                                    "columnId": "2",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/averagetimespentonsite"
+                                },
+                                {
+                                    "columnId": "3",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/bouncerate"
+                                },
+                                {
+                                    "columnId": "4",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visitors"
+                                }
+                            ]
+                        },
+                        "rsid": "bbgentitymbn",
+                        "settings": {
+                            "dimensionSort": "asc"
+                        }
+                    },
+                    "headers": {
+                        "Authorization": "@parameters('token')",
+                        "content-type": "application/json",
+                        "x-api-key": "be4e29e55a524c6aa87da0c56d60638c",
+                        "x-proxy-global-company-id": "bbg1"
+                    },
+                    "method": "POST",
+                    "uri": "https://analytics.adobe.io/api/bbg1/reports"
+                },
+                "runAfter": {
+                    "Delay_4": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "HTTP_6": {
+                "inputs": {
+                    "body": {
+                        "dimension": "variables/daterangeday",
+                        "globalFilters": [
+                            {
+                                "dateRange": "@parameters('date')",
+                                "type": "dateRange"
+                            }
+                        ],
+                        "metricContainer": {
+                            "metricFilters": [
+                                {
+                                    "dateRange": "@parameters('date')",
+                                    "id": "0",
+                                    "type": "dateRange"
+                                }
+                            ],
+                            "metrics": [
+                                {
+                                    "columnId": "0",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/pageviews"
+                                },
+                                {
+                                    "columnId": "1",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visits"
+                                },
+                                {
+                                    "columnId": "2",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/averagetimespentonsite"
+                                },
+                                {
+                                    "columnId": "3",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/bouncerate"
+                                },
+                                {
+                                    "columnId": "4",
+                                    "filters": [
+                                        "0"
+                                    ],
+                                    "id": "metrics/visitors"
+                                }
+                            ]
+                        },
+                        "rsid": "bbgentityocb",
+                        "settings": {
+                            "dimensionSort": "asc"
+                        }
+                    },
+                    "headers": {
+                        "Authorization": "@parameters('token')",
+                        "content-type": "application/json",
+                        "x-api-key": "be4e29e55a524c6aa87da0c56d60638c",
+                        "x-proxy-global-company-id": "bbg1"
+                    },
+                    "method": "POST",
+                    "uri": "https://analytics.adobe.io/api/bbg1/reports"
+                },
+                "runAfter": {
+                    "Delay_5": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "Insert_row": {
+                "inputs": {
+                    "body": {
+                        "jsonText": "@{body('HTTP')}",
+                        "runDate": "@{utcNow()}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Adobe_bbgprodmetrics]'))}/items"
+                },
+                "runAfter": {
+                    "HTTP": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Insert_row_2": {
+                "inputs": {
+                    "body": {
+                        "jsonText": "@{body('HTTP_2')}",
+                        "runDate": "@{utcNow()}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Adobe_voametrics]'))}/items"
+                },
+                "runAfter": {
+                    "HTTP_2": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Insert_row_3": {
+                "inputs": {
+                    "body": {
+                        "jsonText": "@{body('HTTP_3')}",
+                        "runDate": "@{utcNow()}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Adobe_rferlmetrics]'))}/items"
+                },
+                "runAfter": {
+                    "HTTP_3": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Insert_row_4": {
+                "inputs": {
+                    "body": {
+                        "jsonText": "@{body('HTTP_4')}",
+                        "runDate": "@{utcNow()}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Adobe_rfametrics]'))}/items"
+                },
+                "runAfter": {
+                    "HTTP_4": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Insert_row_5": {
+                "inputs": {
+                    "body": {
+                        "jsonText": "@{body('HTTP_5')}",
+                        "runDate": "@{utcNow()}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Adobe_mbnmetrics]'))}/items"
+                },
+                "runAfter": {
+                    "HTTP_5": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Insert_row_6": {
+                "inputs": {
+                    "body": {
+                        "jsonText": "@{body('HTTP_6')}",
+                        "runDate": "@{utcNow()}"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Adobe_ocbmetrics]'))}/items"
+                },
+                "runAfter": {
+                    "HTTP_6": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            },
+            "date": {
+                "defaultValue": "2019-02-19T00:00:00.000/2019-02-20T23:59:59.999",
+                "type": "String"
+            },
+            "token": {
+                "defaultValue": "Bearer eyJ4NXUiOiJpbXNfbmExLWtleS0xLmNlciIsImFsZyI6IlJTMjU2In0.eyJpZCI6IjE1NTA3NjE3MjQyMjJfNjJiYzVmNjYtZGVhZC00Y2U4LTllYWQtOTgwYzliNzVjYzU2X3VlMSIsImNsaWVudF9pZCI6ImJlNGUyOWU1NWE1MjRjNmFhODdkYTBjNTZkNjA2MzhjIiwidXNlcl9pZCI6IjE1MTAwMjVFNUI4MDQ4MUIwQTQ5NUUyRUBBZG9iZUlEIiwic3RhdGUiOiIiLCJ0eXBlIjoiYWNjZXNzX3Rva2VuIiwiYXMiOiJpbXMtbmExIiwiZmciOiJUR1A2WVZLR1hMUDM3WFhXMjY1UUNBQUFOND09PT09PSIsInNpZCI6IjE1NTA3NjE3MjI5NzVfMjdmMGVjMWEtY2QzNi00NDZkLTk3YTQtOWY0YjVjMTY3ZmIwX3VlMSIsInJ0aWQiOiIxNTUwNzYxNzI0MjI0XzdjZjdmYzhhLWI5NmUtNGEyZS05MGQzLTNhZDFlMzdhMGMxMl91ZTEiLCJvYyI6InJlbmdhKm5hMXIqMTY5MTA5YTAzMWIqTkhBM1RQNFEzOTIxVkZWMzkzVEMwUjNQUjQiLCJydGVhIjoiMTU1MTk3MTMyNDIyNCIsIm1vaSI6IjhkOTBkMTZjIiwiYyI6IkdwVWxnQWRTaGtJcm04UUdxajBGTmc9PSIsImV4cGlyZXNfaW4iOiI4NjQwMDAwMCIsImNyZWF0ZWRfYXQiOiIxNTUwNzYxNzI0MjIyIiwic2NvcGUiOiJvcGVuaWQsQWRvYmVJRCxyZWFkX29yZ2FuaXphdGlvbnMsYWRkaXRpb25hbF9pbmZvLnByb2plY3RlZFByb2R1Y3RDb250ZXh0LGFkZGl0aW9uYWxfaW5mby5qb2JfZnVuY3Rpb24ifQ.WjTVhPp-z9M6LCyiduZdAf22esIORJqv-YbprqQ9FdyWCGJTagB1y4ABmlDbp-0Xf223ocnnzRMiDQ48_Km7C0GmNCRvw2rC7YtPUaT_E5poDGqc4r7jhtZ8ct1-aMdWqhc9aHDTVC_pTFquwRVef-xya0yujuqSs6It1Az3xYS1a6B1wkR5k5o1yh_gweMEiJQ0Z1lt6zUOpqNYZQO6t77MJEidG5KLxUmkw1hLvxlWCTr_FaxoEkEZr2d18NwS_ha2tuzDNFD0ypK8ym_p04USzTg1zKu8Cf80KNuqnhRB8NywwoZF_M1tvWNROc_SnL48jQvW8phEOMVgYUXoHg",
+                "type": "String"
+            }
+        },
+        "triggers": {
+            "Recurrence": {
+                "recurrence": {
+                    "frequency": "Month",
+                    "interval": 1
+                },
+                "type": "Recurrence"
+            }
+        }
+    }
+}
