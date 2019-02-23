@@ -9,7 +9,7 @@ import json
 import jwt
 import os
 import requests
-
+import difflib
 
 logger = Settings.get_logger(__name__)
 
@@ -35,21 +35,23 @@ class AdobeAnalytics:
 
         # Request Access Key 
         # This Needs to point at where your private key is on the file system
-        #keyfile = open(os.path.join(os.path.expanduser('~'),'.ssh/private.key'),'r') 
+
+        dirname = os.path.dirname
+        
+        #root_dir = dirname(dirname((dirname(os.path.abspath(__file__)))))
+        #keyfile = open(os.path.join(root_dir, 'certs', 'private.key'),'r') 
         #private_key = keyfile.read()
-        private_key = os.getenv('ADOBE_PRIVATE_KEY')
+        
+        private_key = os.getenv('ADOBE_PRIVATE_KEY').replace('\\n', '\n')
 
         # Encode the jwt Token
         jwttoken = jwt.encode(jwtPayloadJson, private_key, algorithm='RS256')
-        #print("Encoded JWT Token")
-        #print(jwttoken.decode('utf-8'))
-
 
         # We are making a http request simmilar to this curl request
         #curl -X POST -H "Content-Type: multipart/form-data" -F "client_id=6e806c8aa87b42a49260d7a47a8d3218" -F "client_secret=f4813774-c72f-42ca-8039-3208ff189932" -F "jwt_token=`./jwtenc.sh`" https://ims-na1.adobelogin.com/ims/exchange/jwt
         accessTokenRequestPayload['jwt_token'] = jwttoken
         result = requests.post(url, data = accessTokenRequestPayload)
-        resultjson = json.loads(result.text);
+        resultjson = json.loads(result.text)
         
         print("Full output from the access token request")
         print(json.dumps(resultjson, indent=4, sort_keys=True))

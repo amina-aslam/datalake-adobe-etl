@@ -1,6 +1,4 @@
-# Use the Node docker container, see https://github.com/nodejs/docker-node
-# See example docker file here, see https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
-FROM node:carbon
+FROM python:3.6-alpine
 
 ENV NODE_ENV=$NODE_ENV
 ENV LOG_LEVEL=$LOG_LEVEL
@@ -11,15 +9,17 @@ ENV SOCIALBAKERS_API_SECRET=$SOCIALBAKERS_API_SECRET
 # Set working directory
 WORKDIR /usr/src/app
 
-# Bundle app source
-COPY . .
+# Copy the Pipfile and then instal requirements so this is cached
+ADD Pipfile .
 
 # Installs
 RUN pipenv shell
 RUN pipenv install
 
+# Bundle app source
+COPY . .
+
 # For an API, export the port
 #EXPOSE $PORT
 
-#CMD ["yarn", "run", "prod"]
-CMD ["node", "index.js"]
+CMD ["python", "app.py"]
