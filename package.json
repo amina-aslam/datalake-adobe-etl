@@ -1,0 +1,33 @@
+{
+    "name": "AdobeAnalyticsETL",
+    "version": "1.0.0",
+    "description": "AdobeAnalytics ETL operations",
+    "main": "index.js",
+    "repository": "git@github.com:usagm-opr/datalake-adobe-etl.git",
+    "author": "thepipster <mike@arsenicsoup.com>",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "bluebird": "^3.5.3",
+        "callsite": "^1.0.0",
+        "chalk": "^2.4.2",
+        "dotenv-safe": "^6.1.0",
+        "jsonwebtoken": "^8.5.0",
+        "lodash": "^4.17.11",
+        "moment": "^2.24.0",
+        "needle": "^2.2.4",
+        "node-cron": "^2.0.3",
+        "pg": "^7.8.0",
+        "progress": "^2.0.3",
+        "request": "^2.88.0",
+        "sequelize": "^4.42.0",
+        "utf8": "^3.0.0",
+        "winston": "^3.2.1"
+    },
+    "devDependencies": {
+        "chance": "^1.0.18",
+        "jest": "^24.0.0",
+        "sinon": "^7.2.3",
+        "supertest": "^3.4.2"
+    }
+}
